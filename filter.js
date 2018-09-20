@@ -71,3 +71,45 @@ console.log(
   'Below is the filtered list for the comments based on their relation'
 );
 console.table(commentsForPosts(post, comments));
+
+// Practice # 2 find only the uysers that have admin rights
+
+var users = [
+  { id: 1, admin: false },
+  { id: 2, admin: false },
+  { id: 3, admin: false },
+  { id: 4, admin: false },
+  { id: 5, admin: true },
+  { id: 6, admin: false }
+];
+
+var isAdmin = users.filter(function(user) {
+  return user.admin;
+});
+
+console.table(isAdmin);
+
+/**
+ * Challenge!!!! HARD ONE!!!!
+ * create a reject function that does the opposite of what the filter function is expected to do ( if func retuirns true, then exclude that item from the array)
+ * var nums = [10,20,30]
+ * var lessThanTwenty = reject(nums, function(num){ return num < 20 }) --->  this logs [10]
+ */
+
+var numbers = [10, 20, 30];
+
+function reject(array, iteratorFunction) {
+  // generic func that accepts a callback then passes that callback as the conditional for the logic in the filter
+  // need retirn statement inside the first block as there are parenthesis and we need the retuirn kleyword for a block
+
+  return array.filter(function(item) {
+    return !iteratorFunction(item); // the ! will turn the false value to a true output and we will receive those items in our new filtered array
+  });
+}
+
+function checkIftwenty(number) {
+  return number > 15;
+}
+
+var lessThanTwenty = reject(numbers, checkIftwenty);
+console.log(lessThanTwenty);
